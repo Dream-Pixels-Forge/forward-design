@@ -7,19 +7,28 @@ import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Frames: 24 down to 01 (reversed)
-const FRAME_COUNT = 24;
+// Frames: 33 down to 01 (reversed) - actual files in public/hero_sequences
+const FRAME_COUNT = 33;
 const FRAME_PATH = (index: number) =>
   `/hero_sequences/frame-${String(index).padStart(3, "0")}.webp`;
 
 export function CinematicHero() {
   const [currentFrame, setCurrentFrame] = useState(FRAME_COUNT);
   const [showText, setShowText] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
 
+  // Check if mobile - skip cinematic animation on mobile
   useEffect(() => {
-    if (!imageRef.current || !containerRef.current) return;
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      setIsMobile(true);
+      setShowText(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!imageRef.current || !containerRef.current || isMobile) return;
 
     // Preload frames in reverse order
     const framesToLoad = Array.from({ length: FRAME_COUNT }, (_, i) => FRAME_COUNT - i);
@@ -28,7 +37,7 @@ export function CinematicHero() {
       img.src = FRAME_PATH(frame);
     });
 
-    // GSAP ScrollTrigger for frame progression (reversed: 24 -> 01)
+    // GSAP ScrollTrigger for frame progression (reversed: 33 -> 01)
     const ctx = gsap.context(() => {
       // First, reveal text after camera enters
       gsap.delayedCall(1.8, () => setShowText(true));
@@ -54,7 +63,14 @@ export function CinematicHero() {
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
+
+  // Fallback: Show text immediately on mobile
+  useEffect(() => {
+    if (isMobile) {
+      setShowText(true);
+    }
+  }, [isMobile]);
 
   return (
     <section
@@ -65,7 +81,7 @@ export function CinematicHero() {
       {/* Hero background - initially empty until camera enters */}
       <div ref={imageRef} className="relative h-full w-full">
         <Image
-          src={FRAME_PATH(currentFrame)}
+          src={isMobile ? FRAME_PATH(1) : FRAME_PATH(currentFrame)}
           alt="Séquence cinématique - Photographe Forward Design au travail"
           fill
           priority
@@ -143,7 +159,7 @@ export function CinematicHero() {
         <div
           className="flex flex-col items-center gap-2"
           style={{
-            animation: "smoothPulse 2s ease-in-out infinite",
+            animation: isMobile ? "none" : "smoothPulse 2s ease-in-out infinite",
           }}
         >
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground-muted">
@@ -154,14 +170,14 @@ export function CinematicHero() {
             <div 
               className="h-full w-full bg-gradient-to-b from-accent-gold to-transparent"
               style={{
-                animation: "glowPulse 2s ease-in-out infinite",
+                animation: isMobile ? "none" : "glowPulse 2s ease-in-out infinite",
               }}
             />
           </div>
         </div>
       </div>
 
-      {/* Frame counter - reversed (24 -> 01) */}
+      {/* Frame counter - reversed (33 -> 01) - hide on mobile */}
       <div className="absolute bottom-8 right-8 z-10 hidden md:block">
         <span className="font-mono text-xs text-foreground/70">
           {String(currentFrame).padStart(2, "0")} / {String(FRAME_COUNT).padStart(2, "0")}

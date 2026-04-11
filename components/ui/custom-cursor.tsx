@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 export function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -10,8 +10,12 @@ export function CustomCursor() {
 
   // Check device support - do this inside useEffect to avoid early return issue
   useEffect(() => {
-    // Hide cursor on touch devices
-    if (window.matchMedia("(pointer: coarse)").matches) {
+    // Hide cursor on touch devices and mobile
+    if (
+      typeof window === "undefined" ||
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.innerWidth < 768
+    ) {
       setIsSupported(false);
       return;
     }
