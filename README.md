@@ -28,7 +28,14 @@ A professional photography portfolio website built with Next.js, React, and Tail
 - **Lenis** - Smooth scroll library for premium feel
 - **TypeScript** - Type-safe JavaScript
 - **React 19** - Latest React with hooks and server components
-- **Movematics** - Animation strategy skill used for carousel animation review
+
+### DPF Skills Used
+
+- **dpf-about-guidance** - Transformed project brief into visual and strategic guidance
+- **dpf-type-pair** - Selected distinctive typography pairings for the design
+- **dpf-trends** - Applied verified design trends and patterns
+- **dpf-cinematic-scrollytelling** - Created immersive scroll-driven storytelling experience
+- **Movematics** - Animation strategy and review for carousel interactions
 - **Git** - Version control and GitHub for deployment
 
 ## Getting Started
