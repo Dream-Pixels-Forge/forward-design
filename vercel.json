@@ -5,15 +5,6 @@
   "installCommand": "pnpm install",
   "outputDirectory": ".next",
   "regions": ["iad1"],
-  "images": {
-    "domains": [],
-    "remotePatterns": [
-      {
-        "protocol": "https",
-        "hostname": "**"
-      }
-    ]
-  },
   "headers": [
     {
       "source": "/(.*)",
