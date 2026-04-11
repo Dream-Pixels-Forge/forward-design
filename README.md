@@ -20,6 +20,17 @@ A professional photography portfolio website built with Next.js, React, and Tail
 - **Smooth Scroll**: Lenis
 - **Package Manager**: pnpm
 
+## Skills & Tools Used
+
+- **Next.js** - Full-stack React framework with App Router
+- **Tailwind CSS** - Utility-first CSS framework
+- **GSAP (GreenSock Animation Platform)** - Industry-standard animation library
+- **Lenis** - Smooth scroll library for premium feel
+- **TypeScript** - Type-safe JavaScript
+- **React 19** - Latest React with hooks and server components
+- **Movematics** - Animation strategy skill used for carousel animation review
+- **Git** - Version control and GitHub for deployment
+
 ## Getting Started
 
 ### Prerequisites
