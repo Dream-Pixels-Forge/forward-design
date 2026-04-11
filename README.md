@@ -2,6 +2,10 @@
 
 A professional photography portfolio website built with Next.js, React, and Tailwind CSS. Features smooth animations using GSAP and Lenis for scroll effects.
 
+## About This Project
+
+This portfolio was developed by **Dream-Pixels-Forge** for their client **Forward Design**. It showcases the photography work of Forward Design in an immersive, modern web experience.
+
 ## Features
 
 - **Photography Gallery** - Full-screen carousel with 25+ images
@@ -104,6 +108,11 @@ Edit Tailwind theme colors in `tailwind.config.ts`:
 - `background` - Main background color
 - `foreground` - Main text color
 - `accent-gold` - Accent/brand color
+
+## Credits
+
+- **Client**: Forward Design
+- **Development**: Dream-Pixels-Forge
 
 ## License
 
