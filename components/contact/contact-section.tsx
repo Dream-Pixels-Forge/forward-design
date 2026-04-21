@@ -2,6 +2,9 @@
 
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
+import { WhatsAppQR } from "../WhatsAppQR";
+
+const WHATSAPP_PHONE = process.env.NEXT_PUBLIC_WHATSAPP_PHONE;
 
 export function ContactSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -28,6 +31,10 @@ export function ContactSection() {
       }
     };
   }, []);
+
+  const whatsappLink = WHATSAPP_PHONE
+    ? `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent("Bonjour! Je souhaite discuter d'un projet avec vous.")}`
+    : null;
 
   return (
     <section
@@ -134,6 +141,35 @@ export function ContactSection() {
                   </Link>
                 </div>
 
+                {whatsappLink && (
+                  <div>
+                    <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent-gold">
+                      WhatsApp
+                    </p>
+                    <Link
+                      href={whatsappLink}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      className="mt-2 inline-flex items-center gap-2 font-body text-foreground transition-colors hover:text-accent-gold"
+                      data-cursor-hover
+                    >
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        className="text-[#25D366]"
+                      >
+                        <path
+                          d="M27.157 4.847a9.386 9.386 0 00-9.375-9.375 9.386 9.386 0 00-6.875 2.708l-0.417 0.5-2.167 0.708 0.75-2.25 0.542-0.458A9.385 9.385 0 003.22 4.847a9.387 9.387 0 002.708 14.167l0.417 0.333 1.25 0.375 0.375-1.375 0.208-0.75a9.375 9.375 0 009.334-9.375 9.385 9.385 0 00-0.625-3.417zm-4.208 11.625a7.812 7.812 0 01-7.792-7.792 7.812 7.812 0 017.792-7.792 7.812 7.812 0 017.792 7.792 7.813 7.813 0 01-7.792 7.792zm4.167-6.208c-0.35-0.058-0.717-0.092-1.083-0.092-2.333 0-4.308 1.375-5.208 3.625-0.467 1.167-1.458 3.542-1.583 3.875-0.117 0.317-0.467 0.65-1.017 0.483-0.55-0.167-1.625-0.767-2.458-1.317-0.667-0.442-1.192-0.933-1.325-1.083-0.133-0.15-0.108-0.367 0.075-0.517l1.183-0.992c0.308-0.258 0.517-0.433 0.658-0.708 0.125-0.242 0.083-0.483-0.042-0.7-0.175-0.308-0.975-2.167-0.975-2.167s-0.65-1.3-0.758-1.525c-0.133-0.275-0.35-0.467-0.692-0.467h-0.575c-0.342 0-0.808 0.1-1.267 0.542-0.458 0.442-1.442 1.392-1.442 3.392s1.483 3.95 1.692 4.225c0.208 0.275 2.917 4.65 7.058 6.65 4.142 2 4.142 1.333 4.892 1.25 0.75-0.083 2.45-1.008 2.792-1.992 0.342-0.983 0.342-1.825 0.233-1.992-0.108-0.167-0.392-0.267-0.817-0.467z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                      Message rapide
+                    </Link>
+                  </div>
+                )}
+
                 <div>
                   <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent-gold">
                     Réseaux Sociaux
@@ -162,6 +198,18 @@ export function ContactSection() {
                     </Link>
                   </div>
                 </div>
+
+                {/* WhatsApp QR Code - displayed on larger screens as alternative */}
+                {WHATSAPP_PHONE && (
+                  <div className="mt-8 hidden lg:block">
+                    <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent-gold">
+                      Ou scanner
+                    </p>
+                    <div className="mt-4 flex justify-center">
+                      <WhatsAppQR size={140} />
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 

@@ -4,6 +4,8 @@ import { SmoothScrollProvider } from "@/components/ui/smooth-scroll";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
+import { FloatingWhatsAppButton } from "@/components/FloatingWhatsAppButton";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 export const metadata: Metadata = {
   title: "Forward Design — Rodrigue Ilunga | Visual Artist & Photographer",
@@ -45,12 +47,15 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className="antialiased bg-background text-foreground font-body">
-        <SmoothScrollProvider>
-          <CustomCursor />
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </SmoothScrollProvider>
+        <ErrorBoundary>
+          <SmoothScrollProvider>
+            <CustomCursor />
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            <FloatingWhatsAppButton />
+          </SmoothScrollProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );

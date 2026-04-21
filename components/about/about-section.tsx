@@ -88,7 +88,7 @@ export function AboutSection() {
           >
             <div className="relative aspect-[3/4] w-full overflow-hidden">
               <Image
-                src="/hero_sequences/frame-010.webp"
+                src="/photo_of_photographer/rodrigue_illunga_photo.jpg"
                 alt="Portrait de Rodrigue Ilunga, photographe et designer graphique à Kinshasa"
                 fill
                 className="object-cover"
