@@ -1,0 +1,147 @@
+/* ════════════════════════════════════════════════════════════════════
+ * Artisan Labs — Scrollytelling CSS Export
+ * Generated: 2026-04-21T11:49:47.970Z
+ * Mode: easeInOut | Frames: 32 | Scroll: 3000px
+ * ════════════════════════════════════════════════════════════════════ */
+
+/* ─── CSS Variables ──────────────────────────────────────────────────── */
+:root {
+  scrollFrameSwap-frames: 32;
+  scrollFrameSwap-scroll: 3000;
+  scrollFrameSwap-selector: ".scroll-video";
+}
+
+/* ─── Scroll-Timeline Animation (Modern Browsers) ───────────────────── */
+@keyframes scrollFrameSwap {
+  0.00% { --frame-index: 0; }
+  0.01% { --frame-index: 1; }
+  0.11% { --frame-index: 2; }
+  0.36% { --frame-index: 3; }
+  0.86% { --frame-index: 4; }
+  1.68% { --frame-index: 5; }
+  2.90% { --frame-index: 6; }
+  4.61% { --frame-index: 7; }
+  6.87% { --frame-index: 8; }
+  9.79% { --frame-index: 9; }
+  13.43% { --frame-index: 10; }
+  17.87% { --frame-index: 11; }
+  23.20% { --frame-index: 12; }
+  29.50% { --frame-index: 13; }
+  36.84% { --frame-index: 14; }
+  45.32% { --frame-index: 15; }
+  54.68% { --frame-index: 16; }
+  63.16% { --frame-index: 17; }
+  70.50% { --frame-index: 18; }
+  76.80% { --frame-index: 19; }
+  82.13% { --frame-index: 20; }
+  86.57% { --frame-index: 21; }
+  90.21% { --frame-index: 22; }
+  93.13% { --frame-index: 23; }
+  95.39% { --frame-index: 24; }
+  97.10% { --frame-index: 25; }
+  98.32% { --frame-index: 26; }
+  99.14% { --frame-index: 27; }
+  99.64% { --frame-index: 28; }
+  99.89% { --frame-index: 29; }
+  99.99% { --frame-index: 30; }
+  100.00% { --frame-index: 31; }
+}
+
+.scroll-video {
+  animation: scrollFrameSwap linear;
+  animation-timeline: scroll();
+  animation-range: 0% 100%;
+}
+
+/* ─── JavaScript Fallback (All Browsers) ──────────────────────────────── */
+/*
+ * For browsers without scroll-timeline support, use this JavaScript:
+ *
+ * const frames = [...]; // your frame image URLs
+ * const events = [
+ *   { percent: 0.00, frame: 0 },
+ *   { percent: 0.01, frame: 1 },
+ *   { percent: 0.11, frame: 2 },
+ *   { percent: 0.36, frame: 3 },
+ *   { percent: 0.86, frame: 4 },
+ *   { percent: 1.68, frame: 5 },
+ *   { percent: 2.90, frame: 6 },
+ *   { percent: 4.61, frame: 7 },
+ *   { percent: 6.87, frame: 8 },
+ *   { percent: 9.79, frame: 9 },
+ *   // ... 22 more events
+ * ];
+ *
+ * const container = document.querySelector('.scroll-video');
+ * const scrollMax = document.body.scrollHeight - window.innerHeight;
+ *
+ * window.addEventListener('scroll', () => {
+ *   const progress = Math.min(window.scrollY / scrollMax, 1) * 100;
+ *   const event = events.find(e => progress <= e.percent) || events[events.length - 1];
+ *   container.style.setProperty('--frame-index', event.frame.toString());
+ * });
+ */
+
+/* ─── @property Fallback (CSS-only, limited browser support) ───────── */
+@property --current-progress {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+.scroll-video-fallback {
+  /* Requires JavaScript to set --current-progress */
+  /* JavaScript: element.style.setProperty('--current-progress', (scrollY / scrollMax * 100) + '%') */
+}
+
+/* ─── Frame Display Utilities ──────────────────────────────────────────── */
+.scroll-video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.scroll-video-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-video-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--frame-overlay, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+ * Integration Guide
+ * ════════════════════════════════════════════════════════════════════════════
+
+/* 1. IMAGE SPRITESHEET (Recommended for performance):
+   Combine all frames into a single sprite image and use:
+.scroll-video {
+  image-rendering: pixelated; /* for pixel art */
+  background-image: url('/frames/spritesheet.webp');
+  background-size: 3200%;
+  background-position: calc(var(--frame-index) * (100% / 31)) 0;
+}
+
+/* 2. MULTIPLE IMG ELEMENTS:
+   <div class=".scroll-video-stack">
+     <img src="frame0.webp" style="opacity: calc(1 - min(1, var(--frame-index)))" />
+     <img src="frame1.webp" style="opacity: calc(abs(var(--frame-index) - 1))" />
+     <!-- more frames -->
+   </div>
+
+/* 3. CANVAS RENDERING:
+   const canvas = document.querySelector('canvas');
+   const ctx = canvas.getContext('2d');
+   const frames = [...]; // preloaded images
+   window.addEventListener('scroll', () => {
+     const index = getComputedStyle(document.body).getPropertyValue('--frame-index');
+     ctx.drawImage(frames[parseInt(index)], 0, 0);
+   });
+
+*/
