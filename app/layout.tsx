@@ -43,7 +43,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" suppressHydrationWarning>
+      <head />
       <body className="antialiased bg-background text-foreground font-body">
         <ErrorBoundary>
           <SmoothScrollProvider>

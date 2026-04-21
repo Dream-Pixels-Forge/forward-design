@@ -1,11 +1,11 @@
+/* Typography System - Upgrade: Fraunces + Inter (per type-pair skill) */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Typography System - Upgrade: Fraunces + Inter (per type-pair skill) */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600;700&display=swap');
-
-:root {
+* {
   /* Colors - Preserved from original */
   --background: #0a0a0a;
   --background-light: #1a1a1a;
