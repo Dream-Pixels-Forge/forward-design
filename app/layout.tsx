@@ -6,6 +6,7 @@ import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
 import { FloatingWhatsAppButton } from "@/components/FloatingWhatsAppButton";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Forward Design — Rodrigue Ilunga | Visual Artist & Photographer",
@@ -55,6 +56,7 @@ export default function RootLayout({
             <FloatingWhatsAppButton />
           </SmoothScrollProvider>
         </ErrorBoundary>
+        <Analytics />
       </body>
     </html>
   );
